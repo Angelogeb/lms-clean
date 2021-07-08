@@ -150,30 +150,6 @@ class WhileOpt extends TutorialFunSuite {
     println(indent(code.code))
   }
 
-  test("codeMotion") {
-    val code = new DslDriverCPP[Int, Unit] {
-      @virtualize
-      def snippet(a: Rep[Int]): Rep[Unit] = {
-        var i = 0
-        var foo = a
-        val expensiveComp = fun { (x: Rep[Int]) =>
-          x * 10
-        }
-        val arr = NewArray[Float](a)
-        while (i < expensiveComp(foo)) {
-          if (i % 2 == 0) {
-            println(foo)
-          }
-          arr(5) = 6
-          i += 1
-        }
-
-        println(arr(10))
-      }
-    }
-    println(code.code)
-  }
-
   test("moveMaxLen") {
 
     val code = new DslDriverStreams[Int, Unit] {
@@ -203,6 +179,6 @@ class WhileOpt extends TutorialFunSuite {
       @virtualize
       def snippet(x: Rep[Int]) = length(x)
     }
-    println(code.code)
+    println(indent(code.code))
   }
 }
