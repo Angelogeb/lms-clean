@@ -82,6 +82,7 @@ object Adapter extends FrontEnd {
       cg.typeMap = typeMap
       cg.stream = stream
 
+      g = WhileEffectOptimizer.optimize(g)
       cg.emitAll(g,name)(m1,m2)
 
       // (btstrm.toString, cg.extractAllStatics)
